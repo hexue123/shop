@@ -18,14 +18,15 @@
       <el-aside width="200px" class="aside">
 
         <!-- :unique-opened="true" 默认只展开一个自己菜单   -->
-        <el-menu :unique-opened="true" default-active="2">
+        <!-- :router="true"开启路由功能，也就是说el-menu-item index="1-3"中的index的值就是请求标识 -->
+        <el-menu :unique-opened="true" :router="true" default-active="2">
           <!-- 选项1 -->
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>用户管理</span>
             </template>
-            <el-menu-item index="1-3"> <i class="el-icon-location"></i>用户列表</el-menu-item>
+            <el-menu-item index="users"> <i class="el-icon-location"></i>用户列表</el-menu-item>
           </el-submenu>
 
           <!-- 选项2 -->
@@ -70,7 +71,10 @@
         </el-menu>
       </el-aside>
 
-      <el-main class="main">Main</el-main>
+      <el-main class="main">
+          <!-- 组件最终渲染到这里 -->
+          <router-view></router-view> 
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -110,7 +114,8 @@ export default {
   /* background-color: yellow; */
 }
 .header {
-  background-color: gray;
+  /* background-color: gray; */
+  border-bottom: 1px solid #E6E6E6;
 }
 .aside {
   /* background-color: pink; */
